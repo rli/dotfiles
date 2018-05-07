@@ -1,8 +1,15 @@
 #!/bin/zsh
-# see https://github.com/mathiasbynens/dotfiles/blob/master/.macos for more tweaks
+# zsh should be available on OSX >= 10.12. change to bash and symlink
+#     zprezto manually if this is not the case
+
+# see https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# or https://github.com/atomantic/dotfiles/blob/master/install.sh
+# for more tweaks
 
 # get a sudo token
 sudo -v
+# disable guest login
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 # Finder
 # Open home directory by default
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
@@ -94,6 +101,7 @@ brew install zsh
 brew install git
 brew install python3
 brew install openssh
+brew install rbenv
 
 # setup zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -101,7 +109,9 @@ setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
 done
+# remove stock configs
 rm ~/.zshrc ~/.zpreztorc
+# set shell to new zsh
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
 # patch fonts (prefer a precompiled font; repo is ~1 GiB)
@@ -109,11 +119,12 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 # cp -r /Applications/Utilities/Terminal.app/Contents/Resources/Fonts SFmono/
 # git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
 
-
 # manual
 # set hostname via System Preferences → Sharing
-# uBlock Origin on browsers
+# install uBlock Origin on browsers
+# enable night shift
 
+# can brew cask install these
 # iterm
 # dropbox
 # keepassxc
@@ -124,3 +135,4 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 # slack
 # vscode
 # tunnelblick
+# rdesktop
