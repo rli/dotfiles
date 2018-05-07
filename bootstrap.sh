@@ -10,7 +10,10 @@
 sudo -v
 # disable guest login
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+
 # Finder
+# Set theme to dark
+defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 # Open home directory by default
 defaults write com.apple.finder NewWindowTarget -string "PfHm"
 defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
