@@ -9,3 +9,4 @@ set cursorline
 set smarttab
 set softtabstop=4
 set title
+inoremap <S-Tab> <C-d>

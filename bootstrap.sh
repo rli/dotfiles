@@ -8,10 +8,15 @@
 
 # get a sudo token
 sudo -v
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # disable guest login
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
 # Finder
+# Show battery percentage
+defaults write com.apple.menuextra.battery ShowPercent -bool true
 # Set theme to dark
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 # Open home directory by default
@@ -93,11 +98,12 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # security
 # require password immediately
-defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPassword -bool true
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # brew
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew analytics off
 
 # apps
 brew install zsh

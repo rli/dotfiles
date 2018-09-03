@@ -9,6 +9,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 export TERM="xterm-256color"
 # Customize to your needs...
+setopt globdots
 ZSH_HIGHLIGHT_STYLES[path]='fg=yellow'
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(anaconda virtualenv context dir vcs)
@@ -47,6 +48,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # paths
 export GOPATH=$HOME/go
+export PATH="/Users/hungrystray/Library/Python/3.6/bin:$PATH"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # extra
