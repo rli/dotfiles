@@ -6,6 +6,8 @@
 # or https://github.com/atomantic/dotfiles/blob/master/install.sh
 # for more tweaks
 
+ABSPATH=$(cd "$(dirname "$0")"; pwd)
+
 # get a sudo token
 sudo -v
 # Keep-alive: update existing `sudo` time stamp until `.macos` has finished
@@ -122,6 +124,9 @@ done
 rm ~/.zshrc ~/.zpreztorc
 # set shell to new zsh
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+
+# set global gitignore
+git config --global core.excludesfile $ABSPATH/gitignore_global
 
 # patch fonts (prefer a precompiled font; repo is ~1 GiB)
 # mkdir -p projects
