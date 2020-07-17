@@ -122,6 +122,9 @@ for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
 done
 # remove stock configs
 rm ~/.zshrc ~/.zpreztorc
+# symlink
+ln -s /Users/$USER/.zpreztorc $ABSPATH/.zpreztorc
+ln -s /Users/$USER/.zshrc $ABSPATH/.zshrc
 # set shell to new zsh
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 
@@ -129,8 +132,7 @@ sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 git config --global core.excludesfile $ABSPATH/gitignore_global
 
 # patch fonts (prefer a precompiled font; repo is ~1 GiB)
-# mkdir -p projects
-# cp -r /Applications/Utilities/Terminal.app/Contents/Resources/Fonts SFmono/
+# SFMono: /System/Applications/Utilities/Terminal.app/Contents/Resources/Fonts
 # git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
 
 # manual
