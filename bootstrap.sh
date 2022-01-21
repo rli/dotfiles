@@ -123,8 +123,9 @@ done
 # remove stock configs
 rm ~/.zshrc ~/.zpreztorc
 # symlink
-ln -s /Users/$USER/.zpreztorc $ABSPATH/.zpreztorc
-ln -s /Users/$USER/.zshrc $ABSPATH/.zshrc
+ln -s $ABSPATH/.zprestorc /Users/$USER/.zpreztorc
+ln -s $ABSPATH/.zshrc /Users/$USER/.zshrc
+ln -s $ABSPATH/.p10k.zsh /Users/$USER/.p10k.zsh
 # set shell to new zsh
 sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
 

@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # Source Prezto.
 # Font: SF Mono Regular (Powerline patcher and/or Nerd Fonts Patch)
 # iTerm colors: material-design-colors
@@ -11,23 +18,6 @@ export TERM="xterm-256color"
 # Customize to your needs...
 setopt globdots
 ZSH_HIGHLIGHT_STYLES[path]='fg=yellow'
-
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(anaconda virtualenv context dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs command_execution_time load time)
-POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND="000"
-POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND="007"
-POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND="black"
-POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND="red"
-POWERLEVEL9K_MODE='nerdfont-complete'
-
-POWERLEVEL9K_SHORTEN_DIR_LENGTH=2
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_middle"
-#POWERLEVEL9K_DIR_HOME_BACKGROUND="001"
-#POWERLEVEL9K_DIR_HOME_FOREGROUND="000"
-#POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="001"
-#POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="000"
-#POWERLEVEL9K_LEFT_SEGMENT_SEPARATOR=$'\uE0B0'
-#POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=$'\uE0B2'
 
 function hidehiddenfiles(){
     defaults write com.apple.finder AppleShowAllFiles -bool NO
@@ -48,11 +38,12 @@ eval "$(pyenv virtualenv-init -)"
 
 # paths
 export GOPATH=$HOME/go
-export PATH="/Users/hungrystray/Library/Python/3.6/bin:$PATH"
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # extra
 for file in ~/.extra; do
     [ -r "$file" ] && source "$file"
 done
 unset file
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
