@@ -49,7 +49,7 @@ killall Dock
 # Spotlight
 # Disable Spotlight indexing for any volume that gets mounted and has not yet been indexed
 # Use `sudo mdutil -i off "/Volumes/foo"` to stop indexing any volume.
-sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
+# sudo defaults write /.Spotlight-V100/VolumeConfiguration Exclusions -array "/Volumes"
 # Change indexing order and disable some file types from being indexed
 defaults write com.apple.spotlight orderedItems -array \
   '{"enabled" = 1;"name" = "APPLICATIONS";}' \
@@ -104,18 +104,20 @@ defaults write com.apple.screensaver askForPassword -bool true
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # brew
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew analytics off
 
 # apps
 brew install zsh
 brew install git
-brew install python3
-brew install openssh
-brew install rbenv
+# brew install python3
+# brew install openssh
+# brew install rbenv
 
 # setup zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+setopt EXTENDED_GLOB
 setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
   ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
@@ -127,7 +129,7 @@ ln -s $ABSPATH/.zprestorc /Users/$USER/.zpreztorc
 ln -s $ABSPATH/.zshrc /Users/$USER/.zshrc
 ln -s $ABSPATH/.p10k.zsh /Users/$USER/.p10k.zsh
 # set shell to new zsh
-sudo dscl . -create /Users/$USER UserShell /usr/local/bin/zsh
+sudo dscl . -create /Users/$USER UserShell /opt/homebrew/bin/zsh
 
 # set global gitignore
 git config --global core.excludesfile $ABSPATH/gitignore_global

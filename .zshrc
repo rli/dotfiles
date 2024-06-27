@@ -31,10 +31,7 @@ function showhiddenfiles(){
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 alias use_conda='source ~/miniconda3/bin/activate'
 # integrations
-# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-eval "$(rbenv init -)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # paths
 export GOPATH=$HOME/go
