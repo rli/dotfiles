@@ -17,8 +17,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
 # Finder
-# Show battery percentage
-defaults write com.apple.menuextra.battery ShowPercent -bool true
+# Show battery percentage in menu bar
+defaults -currentHost write com.apple.controlcenter.plist BatteryShowPercentage -bool true
+# Show output sound settings in menu bar
+defaults -currentHost write com.apple.controlcenter.plist Sound -int 18
 # Set theme to dark
 defaults write NSGlobalDomain AppleInterfaceStyle -string "Dark"
 # Open home directory by default
